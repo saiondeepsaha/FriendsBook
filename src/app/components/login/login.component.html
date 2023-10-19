@@ -1,0 +1,28 @@
+<div class="form-container">
+  <div class="alert alert-danger" *ngIf="loginError">
+      <mat-icon>error</mat-icon>
+      <strong> {{ responseMsg }}</strong>
+  </div>
+  <mat-spinner *ngIf="formSubmitted" mode="indeterminate"></mat-spinner>
+    <mat-card class="mb-4">
+        <h2 class="text-center">Log In</h2>
+    </mat-card>
+    <form [formGroup]="registeredUser">
+      <mat-form-field class="full-width-input">
+        <input matInput type="email" formControlName="uname" placeholder="Username">
+        <mat-error>
+          Please provide the registered email address as username
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input matInput type="password" formControlName="pass" placeholder="Password">
+        <mat-error>
+          Please provide the valid password
+        </mat-error>
+      </mat-form-field>
+      <div class="button-group">
+        <button class="btn btn-primary" (click)="login()">Login</button>
+        <button class="btn btn btn-info float-end" (click)="redirectUser()">Forgot Password</button>
+      </div>
+    </form>
+</div>

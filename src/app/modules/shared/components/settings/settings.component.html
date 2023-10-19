@@ -1,0 +1,119 @@
+<div class="form-container">
+    <div class="alert alert-success" *ngIf="responseMsg">
+        <mat-icon>verified</mat-icon>
+        <strong> {{ responseMsg }}</strong>
+    </div>
+
+    <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+        <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon>build</mat-icon>
+            Profile Settings
+        </ng-template>
+        <div class="container container-fluid mt-5">
+            <form [formGroup]="editUser">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <mat-form-field class="full-width-input">
+                            <input matInput type="text" formControlName="firstName" placeholder="First Name">
+                            <mat-error>
+                                Please provide a valid first name
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <mat-form-field class="full-width-input">
+                            <input matInput type="text" formControlName="lastName" placeholder="Last Name">
+                            <mat-error>
+                                Please provide a valid last name
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <mat-form-field class="full-width-input">
+                            <input matInput type="text" formControlName="gender" placeholder="Gender" readonly>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <mat-form-field class="full-width-input">
+                            <input matInput type="text" formControlName="dob" placeholder="Date Of Birth" readonly>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <mat-form-field class="full-width-input">
+                            <input matInput type="email" formControlName="email" placeholder="Email">
+                            <mat-error>
+                                Please provide a valid email address for username
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <mat-form-field class="full-width-input">
+                            <input matInput type="text" formControlName="phone" placeholder="Phone Number" maxlength="10">
+                            <mat-error>
+                                Please provide a valid 10 digit phone number
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <mat-form-field class="full-width-input">
+                            <input matInput type="text" formControlName="country" placeholder="Country">
+                            <mat-error>
+                                Please provide a valid country
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <mat-form-field class="full-width-input">
+                            <input matInput type="text" formControlName="city" placeholder="City">
+                            <mat-error>
+                                Please provide a valid city
+                            </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="button-group mb-5">
+                    <button class="btn btn-primary" (click)="saveEdits()">Save</button>
+                </div>
+            </form>
+        </div>
+        </mat-tab>
+        <mat-tab>
+            <ng-template mat-tab-label>
+                <mat-icon>vpn_key</mat-icon>
+                Change Password
+            </ng-template>
+            <div class="container container-fluid mt-5">
+                <form [formGroup]="activeUser">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6">
+                            <mat-form-field class="full-width-input">
+                                <input matInput type="password" formControlName="newPass" placeholder="New Password">
+                                <mat-error>
+                                    Please provide a minimum 8 charcter password
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-xs-12 col-sm-6">
+                            <mat-form-field class="full-width-input">
+                                <input matInput type="password" formControlName="confirmPass" placeholder="Confirm Password">
+                                <mat-error>
+                                    Passwords not matching.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="button-group mb-5">
+                        <button class="btn btn-primary" (click)="saveChange()">Save</button>
+                    </div>
+                </form>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

@@ -1,0 +1,21 @@
+{
+    "loggedIn": [
+        { "headerTxt": "Home", "linkText": "home"},
+        { "headerTxt": "Network", "linkText": "network"},
+        { "headerTxt": "Friends", "linkText": "friends"},
+        { "headerTxt": "Settings", "linkText": "settings"},
+        { "headerTxt": "Logout", "linkText": "logout"}
+    ],
+    "loggedOut": [
+        { "headerTxt": "Register", "linkText": "register"},
+        { "headerTxt": "Login", "linkText": "login"}
+    ],
+    "isAdmin": [
+        { "headerTxt": "Home", "linkText": "home"},
+        { "headerTxt": "Users", "linkText": "users-list" },
+        { "headerTxt": "Network", "linkText": "network"},
+        { "headerTxt": "Friends", "linkText": "friends"},
+        { "headerTxt": "Settings", "linkText": "settings"},
+        { "headerTxt": "Logout", "linkText": "logout"}
+    ]
+}

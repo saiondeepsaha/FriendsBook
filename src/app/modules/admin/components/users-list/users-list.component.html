@@ -1,0 +1,80 @@
+<div class="container container-fluid pb-4">
+
+    <mat-card class="my-4">
+        <h2 class="text-center"><mat-icon>table_chart</mat-icon> All Users</h2>
+    </mat-card>
+
+    <mat-spinner *ngIf="spinner" mode="indeterminate"></mat-spinner>
+
+    <table class="table table-success table-striped table-hover">
+        <thead>
+            <tr class="table-dark">
+                <th width="70%">Username</th>
+                <th width="30%">Actions</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="dataSource">
+          <tr *ngFor="let data of currentItemsToShow" [@detailExpand]="expandedElement">
+            <td [id]="data._id" (click)="expandRow('collapsed_' + data._id)">
+                {{ data.firstName }}<span></span> {{ data.lastName }}
+                <ng-container *ngIf="expandedElement === 'expanded'">
+                    <div class="mt-2 p-2 container container-fluid">
+                        <div class="row">
+                            <div class="col-md-4">
+                                Photo Id: {{ data.photoId === '' ? 'N.A': data.photoId }}
+                            </div>
+                            <div class="col-md-4">
+                                Email Id: {{ data.email === '' ? 'N.A': data.email }}
+                            </div>
+                            <div class="col-md-4">
+                                Created: {{ data.createdDate | date }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                DOB: {{ data.dob | date }}
+                            </div>
+                            <div class="col-md-4">
+                                City: {{ data.city === '' ? 'N.A': data.city }}
+                            </div>
+                            <div class="col-md-4">
+                                Country: {{ data.country === '' ? 'N.A': data.country }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Gender: {{ data.gender }}
+                            </div>
+                            <div class="col-md-4">
+                                State: {{ data.state === '' ? 'N.A': data.state }}
+                            </div>
+                            <div class="col-md-4">
+                                Pincode: {{ data.pincode === '' ? 'N.A': data.pincode }}
+                            </div>
+                        </div>
+                    </div>
+                </ng-container>
+            </td>
+            <td>
+                <div class="row">
+                    <div class="col-12">
+                        <button class="btn btn-secondary float-end mb-2" (click)="updateUser(data)" [disabled]="data.isActive">Unblock</button>
+                        <button class="btn btn-danger float-end me-2" (click)="updateUser(data)" [disabled]="!data.isActive">Block</button>
+                    </div>
+                </div>     
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+                <mat-paginator
+                    [length]="dataSource.length"
+                    [pageSize]="defaultPage"
+                    [pageSizeOptions]="[10, 15, 20]"
+                    (page)="onPageChange($event)">
+                </mat-paginator>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+
+</div>

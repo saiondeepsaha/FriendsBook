@@ -1,0 +1,61 @@
+<div class="container container-fluid">
+    <div class="form-container">
+        <div class="row">
+
+            <div class="col-sm-3 border border-white">
+                <div class="example-header-image pt-2">
+                    <img src="../../../../../assets/profile.png">
+                </div>
+                <div class="row text-center">
+                    <div class="col-12 border border-white">
+                        <span>xx Connections</span>
+                    </div>
+                    <div class="col-12 border border-white">
+                        <span>xx Posts</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-9 border border-white">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="alert alert-danger my-3" *ngIf="errMsg">
+                            <mat-icon>error</mat-icon>
+                            <strong> {{ errMsg }}</strong>
+                        </div>
+
+                        <mat-spinner *ngIf="spinner" mode="indeterminate"></mat-spinner>
+
+                        <section class="my-3" *ngIf="itemsToShow && itemsToShow.length > 0; else nofriends">
+                            <h3 style="color: white"><mat-icon>list</mat-icon> Friends List</h3>
+                            <div *ngFor="let item of currentItemsToShow; let i = index">
+                              <div class="row border border-white">
+                                  <div class="col-12">
+                                      <div style="color: white;">
+                                        <mat-icon>account_circle </mat-icon> 
+                                        <span> {{ item.firstName + ' ' + item.lastName}}</span>
+                                      </div>
+                                  </div>
+                              </div>
+                              
+                            </div>
+                            <mat-paginator
+                             [length]="itemsToShow.length"
+                             [pageSize]="defaultPage"
+                             [pageSizeOptions]="[10, 15, 20]"
+                             (page)="onPageChange($event)" class="my-3">
+                            </mat-paginator>
+                        </section>
+
+                          <ng-template #nofriends>
+                              <div class="border border-white text-center my-3" style="color: white;">
+                                  You have no friends.
+                              </div>
+                          </ng-template>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

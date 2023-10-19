@@ -1,0 +1,23 @@
+.table td, .table th{
+    border-top: 0 !important;
+    color: white;
+  }
+  
+  .table td{
+    width: 50%
+  }
+
+  mat-card {
+    max-width: 100% !important;
+    padding: .5rem !important;
+  }
+
+.post-row {
+    height: auto;
+    padding: 1rem;
+}
+
+.example-header-image img{
+  max-width: 100%;
+  height: auto;
+}

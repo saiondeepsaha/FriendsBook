@@ -1,0 +1,60 @@
+<div class="form-container">
+    <div class="alert alert-success" *ngIf="regSuccess">
+        <mat-icon>verified</mat-icon>
+        <strong> {{ responseMsg }}</strong>
+    </div>
+    <div class="alert alert-danger" *ngIf="regError">
+        <mat-icon>error</mat-icon>
+        <strong> {{ responseMsg }}</strong>
+    </div>
+    <mat-spinner *ngIf="formSubmitted" mode="indeterminate"></mat-spinner>
+    <mat-card class="mb-4">
+        <h2 class="text-center">Registration</h2>
+    </mat-card>
+    <form [formGroup]="newUser">
+        <mat-form-field class="full-width-input">
+            <input matInput type="text" formControlName="fName" placeholder="First Name">
+            <mat-error>
+                Please provide a valid first name
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+            <input matInput type="text" formControlName="lName" placeholder="Last Name">
+            <mat-error>
+                Please provide a valid last name
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+            <mat-label>DOB</mat-label>
+            <input matInput [matDatepicker]="dob" formControlName="dob" readonly>
+            <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+            <mat-datepicker #dob></mat-datepicker>
+        </mat-form-field>
+        <mat-error *ngIf="(newUser.controls['dob'].touched || submitClicked) && newUser.controls['dob'].invalid">
+            Please select a Date from the Datepicker
+        </mat-error>
+        <mat-radio-group aria-label="Choose your gender" formControlName="gender">
+            <mat-radio-button value="Male">Male</mat-radio-button>
+            <mat-radio-button value="Female">Female</mat-radio-button>
+        </mat-radio-group>
+        <mat-error *ngIf="newUser.controls['gender'].invalid && submitClicked">
+            Selection is required
+        </mat-error>
+        <mat-form-field class="full-width-input">
+            <input matInput type="email" formControlName="email" placeholder="Username">
+            <mat-error>
+            Please provide a valid email address for username
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field class="full-width-input">
+            <input matInput type="password" formControlName="pass" placeholder="Password">
+            <mat-error>
+            Please provide a valid password of minimum 8 characters
+            </mat-error>
+        </mat-form-field>
+        <div class="button-group">
+            <button class="btn btn btn-info" (click)="redirectUser()">Login</button>
+            <button class="btn btn-primary float-end" (click)="registerUser()">Register</button>
+        </div>
+    </form>
+</div>

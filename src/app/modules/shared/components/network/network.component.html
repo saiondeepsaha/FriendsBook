@@ -1,0 +1,101 @@
+<div class="container container-fluid">
+    <div class="form-container">
+        <div class="row">
+            <div class="col-sm-3 border border-white">
+                <div class="example-header-image pt-2">
+                    <img src="../../../../../assets/profile.png">
+                </div>
+                <div class="row text-center">
+                    <div class="col-12 border border-white">
+                        <span>xx Connections</span>
+                    </div>
+                    <div class="col-12 border border-white">
+                        <span>xx Posts</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-9 border border-white">
+                <div class="row">
+                    <div class="col-12">
+
+                        <div class="alert alert-success my-3" *ngIf="successMsg">
+                            <mat-icon>verified</mat-icon>
+                            <strong> {{ successMsg }}</strong>
+                        </div>
+
+                        <section class="my-3" *ngIf="reqItems && reqItems.length > 0; else nofriends">
+                            <h3 style="color: white"><mat-icon>list</mat-icon> Pending Requests</h3>
+                            <div *ngFor="let req of currentRequestsToShow; let i = index">
+                              <div class="row border border-white" style="padding: 1rem;">
+                                  <div class="col-sm-8 col-xs-8">
+                                      <div style="color: white;">
+                                            {{ req.firstName }} <span></span> {{ req.lastName }}
+                                      </div>
+                                  </div>
+                                  <div class="col-sm-4 col-xs-4">
+                                      <div class="row">
+                                        <div class="col-6">
+                                            <button class="btn btn-success float-end" (click)="updateReq(req, 'Accepted')">Accept</button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn btn-danger float-end" (click)="updateReq(req, 'Declined')">Decline</button>
+                                        </div>
+                                      </div>
+                                  </div>
+                              </div>
+                            </div>
+                            <mat-paginator
+                             [length]="reqItems.length"
+                             [pageSize]="defaultPage"
+                             [pageSizeOptions]="[5, 10, 20]"
+                             (page)="pageChange($event)" class="my-3">
+                            </mat-paginator>
+                        </section>
+
+                        <ng-template #nofriends>
+                            <section class="mt-3">
+                                <div class="border border-white text-center" style="color: white;">
+                                    You have no friends requests.
+                                </div>
+                            </section>        
+                        </ng-template>
+                    
+                        <mat-spinner *ngIf="spinner" mode="indeterminate"></mat-spinner>
+                    
+                        <section class="my-3" *ngIf="itemsToShow && itemsToShow.length > 0; else noposts">
+                            <h3 style="color: white"><mat-icon>list</mat-icon> Send Requests</h3>
+                            <div *ngFor="let item of currentItemsToShow; let i = index">
+                              <!-- since you cannot send friend request to yourself, 1 entry has to be refrained to populate -->
+                              <div class="row border border-white">
+                                <div class="col-sm-8 col-xs-8 post-row">
+                                    <div style="color: white;">
+                                        {{ item.firstName }} <span></span> {{ item.lastName }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 col-xs-4 post-row">
+                                    <button class="btn btn-warning float-end" (click)="sendRequest(item)">Send Request</button>
+                                </div>
+                              </div>
+                          </div>
+                          <mat-paginator
+                           [length]="itemsToShow.length"
+                           [pageSize]="defaultPage"
+                           [pageSizeOptions]="[5, 15, 25]"
+                           (page)="onPageChange($event)" class="my-3">
+                          </mat-paginator>
+                        </section>
+                        
+                        <ng-template #noposts>
+                            <div class="border border-white mb-3" style="color: white;">
+                                Populating......
+                            </div>
+                        </ng-template>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
